@@ -4,13 +4,14 @@ import pro.sky.exception.WrongLoginException;
 import pro.sky.exception.WrongPasswordException;
 
 public class Check {
-    public static boolean checkCred(String login, String password, String confirmPassword) {
+    public static boolean checkCred(String login, String password, String confirmPassword) throws WrongPasswordException, WrongLoginException {
         try {
             return checkPass(password, confirmPassword) && checkLogin(login);
-        } catch (WrongPasswordException | WrongLoginException e) {
-            System.out.println(e.getMessage());
+        } catch (WrongPasswordException e) {
+            throw new WrongPasswordException(e.getMessage());
+        } catch (WrongLoginException e) {
+            throw new WrongLoginException(e.getMessage());
         }
-        return false;
     }
 
     private static boolean checkPass(String password, String confirmPassword) throws WrongPasswordException {
