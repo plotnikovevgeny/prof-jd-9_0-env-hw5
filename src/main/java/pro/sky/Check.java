@@ -15,7 +15,7 @@ public class Check {
     }
 
     private static boolean checkPass(String password, String confirmPassword) throws WrongPasswordException {
-        if (!(checkSecurity(password) || checkSecurity(confirmPassword))) {
+        if (!(checkSecurity(password) && checkSecurity(confirmPassword))) {
             throw new WrongPasswordException("Пароль может содержать в себе только латинские буквы, цифры и знак подчеркивания, а также не должен превышать 20 символов");
         } else return password.equals(confirmPassword);
     }
